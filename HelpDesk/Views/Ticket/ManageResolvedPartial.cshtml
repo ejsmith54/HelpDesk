@@ -1,0 +1,48 @@
+﻿@model HelpDesk.Models.ViewModel.TicketDataView
+
+<div>
+    <h1>List of Resolved Tickets</h1>
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User Name</th>
+                <th>Date Created</th>
+                <th colspan="2">Severity</th>
+                <th colspan="2">Status</th>
+                <th colspan="2">Department</th>
+                <th class="sorter-false">Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model.TicketProfile)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(m => i.ID)</td>
+                    <td> @Html.DisplayFor(m => i.LoginName)</td>
+                    <td> @Html.DisplayFor(m => i.RowCreatedDateTime)</td>
+                    <td> @Html.DisplayFor(m => i.Severity)</td>
+                    <td> @Html.HiddenFor(m => i.SeverityID)</td>
+                    <td> @Html.DisplayFor(m => i.Status)</td>
+                    <td> @Html.HiddenFor(m => i.StatusID)</td>
+                    <td> @Html.DisplayFor(m => i.Department)</td>
+                    <td> @Html.HiddenFor(m => i.DepartmentID)</td>
+                    <td> @Html.DisplayFor(m => i.Comments)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("table").tablesorter({
+            theme: 'ice',
+            headers: {
+                2: { sorter: 'text' }
+            }
+        });
+    });
+</script>
+

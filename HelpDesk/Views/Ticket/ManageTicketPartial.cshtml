@@ -1,0 +1,71 @@
+﻿@model HelpDesk.Models.ViewModel.TicketDataView
+
+<div>
+    <h1>List of Tickets</h1>
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User Name</th>
+                <th>Date Created</th>
+                <th colspan="2">Severity</th>
+                <th colspan="2">Status</th>
+                <th colspan="2">Department</th>
+                <th class="sorter-false">Comments</th>
+                <th class="sorter-false"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model.TicketProfile)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(m => i.ID)</td>
+                    <td> @Html.DisplayFor(m => i.LoginName)</td>
+                    <td> @Html.DisplayFor(m => i.RowCreatedDateTime)</td>
+                    <td> @Html.DisplayFor(m => i.Severity)</td>
+                    <td> @Html.HiddenFor(m => i.SeverityID)</td>
+                    <td> @Html.DisplayFor(m => i.Status)</td>
+                    <td> @Html.HiddenFor(m => i.StatusID)</td>
+                    <td> @Html.DisplayFor(m => i.Department)</td>
+                    <td> @Html.HiddenFor(m => i.DepartmentID)</td>
+                    <td> @Html.DisplayFor(m => i.Comments)</td>                  
+                    <td>@Html.ActionLink("Edit", "EditTicket", "Ticket", new { id = @i.ID}, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<span class="alert-success">@ViewBag.Message</span>  
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("table").tablesorter({
+            theme: 'ice',
+            headers: {
+                2: { sorter: 'text' }
+            }
+        });
+    });
+
+    function EditTicket(id) {
+        $.ajax({  
+            type: "POST",  
+            url: "@(Url.Action("EditTicket","Ticket"))",  
+            data: {  
+                ticketID: id
+            },  
+        success: function(data) {  
+            $("#divUserListContainer").load("@(Url.Action("ManageTicketPartial","Ticket", new { status ="update" }))");  
+        },  
+        error: function(error) {}  
+    });  
+    }  
+  
+    $("a.lnkEdit").on("click", function () {
+        var row = $(this).closest('tr');  
+        var id = row.find("td:eq(0)").html().trim();
+        EditTicket(id);  
+    });
+</script>

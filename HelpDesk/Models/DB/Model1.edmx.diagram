@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="863f6ae7b633453780cff0756e6e28fa" Name="Diagram1">
+        <EntityTypeShape EntityType="mwdModel.Department" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwdModel.helpdesk" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwdModel.LOOKUPRole" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwdModel.Severity" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwdModel.Status" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwdModel.sysdiagram" Width="1.5" PointX="2.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwdModel.SYSUser" Width="1.5" PointX="5.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwdModel.SYSUserProfile" Width="1.5" PointX="8" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwdModel.SYSUserRole" Width="1.5" PointX="11" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="mwdModel.FK_helpdesk_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="mwdModel.FK_helpdesk_Severity" ManuallyRouted="false" />
+        <AssociationConnector Association="mwdModel.FK_helpdesk_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="mwdModel.FK__SYSUserRo__LOOKU__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="mwdModel.FK__SYSUserPr__SYSUs__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="mwdModel.FK__SYSUserRo__SYSUs__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="mwdModel.FK_helpdesk_SYSUser" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

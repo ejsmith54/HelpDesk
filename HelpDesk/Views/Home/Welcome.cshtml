@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Signout", "SignOut", "Account")
+<h2>Hi <b>@Context.User.Identity.Name</b>! Welcome to the Help Desk!</h2>
+@Html.ActionLink("Admin", "AdminOnly", "Home")  -  @Html.ActionLink("Edit Profile", "EditProfile", "Home")  -  @Html.ActionLink("Create Ticket", "AddTicket", "Ticket")
+<br />
+
+<div id="divOpenTicketListContainer">
+    @Html.Action("ManageTicketPartial", "Ticket")
+</div>
+<div id="divResolvedTicketListContainer">
+    @Html.Action("ManageResolvedPartial", "Ticket")
+</div>
+
+

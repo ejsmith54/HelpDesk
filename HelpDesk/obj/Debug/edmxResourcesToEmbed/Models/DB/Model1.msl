@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mwdModelStoreContainer" CdmEntityContainer="mwdEntities">
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="mwdModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Department1" ColumnName="Department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="helpdesks">
+      <EntityTypeMapping TypeName="mwdModel.helpdesk">
+        <MappingFragment StoreEntitySet="helpdesk">
+          <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+          <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+          <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+          <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SeverityID" ColumnName="SeverityID" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOOKUPRoles">
+      <EntityTypeMapping TypeName="mwdModel.LOOKUPRole">
+        <MappingFragment StoreEntitySet="LOOKUPRole">
+          <ScalarProperty Name="LOOKUPRoleID" ColumnName="LOOKUPRoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+          <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+          <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+          <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+          <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Severities">
+      <EntityTypeMapping TypeName="mwdModel.Severity">
+        <MappingFragment StoreEntitySet="Severity">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Severity1" ColumnName="Severity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="mwdModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Status1" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="mwdModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYSUsers">
+      <EntityTypeMapping TypeName="mwdModel.SYSUser">
+        <MappingFragment StoreEntitySet="SYSUser">
+          <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
+          <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+          <ScalarProperty Name="PasswordEncryptedText" ColumnName="PasswordEncryptedText" />
+          <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+          <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+          <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+          <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYSUserProfiles">
+      <EntityTypeMapping TypeName="mwdModel.SYSUserProfile">
+        <MappingFragment StoreEntitySet="SYSUserProfile">
+          <ScalarProperty Name="SYSUserProfileID" ColumnName="SYSUserProfileID" />
+          <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+          <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+          <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+          <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYSUserRoles">
+      <EntityTypeMapping TypeName="mwdModel.SYSUserRole">
+        <MappingFragment StoreEntitySet="SYSUserRole">
+          <ScalarProperty Name="SYSUserRoleID" ColumnName="SYSUserRoleID" />
+          <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
+          <ScalarProperty Name="LOOKUPRoleID" ColumnName="LOOKUPRoleID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+          <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+          <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+          <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

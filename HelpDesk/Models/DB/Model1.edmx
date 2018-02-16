@@ -1,0 +1,601 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mwdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="helpdesk">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeverityID" Type="int" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Comments" Type="varchar" MaxLength="50" />
+          <Property Name="RowCreatedDateTime" Type="datetime" />
+          <Property Name="RowModifiedDateTime" Type="datetime" />
+          <Property Name="RowModifiedSYSUserID" Type="int" />
+          <Property Name="RowCreatedSYSUserID" Type="int" />
+        </EntityType>
+        <EntityType Name="LOOKUPRole">
+          <Key>
+            <PropertyRef Name="LOOKUPRoleID" />
+          </Key>
+          <Property Name="LOOKUPRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="100" />
+          <Property Name="RoleDescription" Type="varchar" MaxLength="500" />
+          <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="datetime" />
+          <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Severity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Severity" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="SYSUser">
+          <Key>
+            <PropertyRef Name="SYSUserID" />
+          </Key>
+          <Property Name="SYSUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PasswordEncryptedText" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="datetime" />
+          <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SYSUserProfile">
+          <Key>
+            <PropertyRef Name="SYSUserProfileID" />
+          </Key>
+          <Property Name="SYSUserProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SYSUserID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="datetime" />
+          <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SYSUserRole">
+          <Key>
+            <PropertyRef Name="SYSUserRoleID" />
+          </Key>
+          <Property Name="SYSUserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SYSUserID" Type="int" Nullable="false" />
+          <Property Name="LOOKUPRoleID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="RowCreatedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="datetime" />
+          <Property Name="RowModifiedSYSUserID" Type="int" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__SYSUserPr__SYSUs__4BAC3F29">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSUserProfile" Type="Self.SYSUserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="SYSUserProfile">
+              <PropertyRef Name="SYSUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__LOOKU__5165187F">
+          <End Role="LOOKUPRole" Type="Self.LOOKUPRole" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOOKUPRole">
+              <PropertyRef Name="LOOKUPRoleID" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="LOOKUPRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__SYSUs__52593CB8">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="SYSUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_helpdesk_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="helpdesk" Type="Self.helpdesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="helpdesk">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_helpdesk_Severity">
+          <End Role="Severity" Type="Self.Severity" Multiplicity="0..1" />
+          <End Role="helpdesk" Type="Self.helpdesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Severity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="helpdesk">
+              <PropertyRef Name="SeverityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_helpdesk_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="helpdesk" Type="Self.helpdesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="helpdesk">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_helpdesk_SYSUser">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="0..1" />
+          <End Role="helpdesk" Type="Self.helpdesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="helpdesk">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mwdModelStoreContainer">
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="helpdesk" EntityType="Self.helpdesk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOOKUPRole" EntityType="Self.LOOKUPRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Severity" EntityType="Self.Severity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUser" EntityType="Self.SYSUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUserProfile" EntityType="Self.SYSUserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSUserRole" EntityType="Self.SYSUserRole" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__SYSUserPr__SYSUs__4BAC3F29" Association="Self.FK__SYSUserPr__SYSUs__4BAC3F29">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="SYSUserProfile" EntitySet="SYSUserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__LOOKU__5165187F" Association="Self.FK__SYSUserRo__LOOKU__5165187F">
+            <End Role="LOOKUPRole" EntitySet="LOOKUPRole" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__SYSUs__52593CB8" Association="Self.FK__SYSUserRo__SYSUs__52593CB8">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_helpdesk_Department" Association="Self.FK_helpdesk_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="helpdesk" EntitySet="helpdesk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_helpdesk_Severity" Association="Self.FK_helpdesk_Severity">
+            <End Role="Severity" EntitySet="Severity" />
+            <End Role="helpdesk" EntitySet="helpdesk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_helpdesk_Status" Association="Self.FK_helpdesk_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="helpdesk" EntitySet="helpdesk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_helpdesk_SYSUser" Association="Self.FK_helpdesk_SYSUser">
+            <End Role="SYSUser" EntitySet="SYSUser" />
+            <End Role="helpdesk" EntitySet="helpdesk" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mwdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Department1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="helpdesks" Relationship="Self.FK_helpdesk_Department" FromRole="Department" ToRole="helpdesk" />
+        </EntityType>
+        <EntityType Name="helpdesk">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeverityID" Type="Int32" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_helpdesk_Department" FromRole="helpdesk" ToRole="Department" />
+          <NavigationProperty Name="Severity" Relationship="Self.FK_helpdesk_Severity" FromRole="helpdesk" ToRole="Severity" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_helpdesk_Status" FromRole="helpdesk" ToRole="Status" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="SYSUser" Relationship="mwdModel.FK_helpdesk_SYSUser" FromRole="helpdesk" ToRole="SYSUser" />
+          <Property Name="RowCreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="RowModifiedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="RowModifiedSYSUserID" Type="Int32" />
+          <Property Name="RowCreatedSYSUserID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="LOOKUPRole">
+          <Key>
+            <PropertyRef Name="LOOKUPRoleID" />
+          </Key>
+          <Property Name="LOOKUPRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RoleDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="RowCreatedSYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="RowModifiedSYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SYSUserRoles" Relationship="Self.FK__SYSUserRo__LOOKU__5165187F" FromRole="LOOKUPRole" ToRole="SYSUserRole" />
+        </EntityType>
+        <EntityType Name="Severity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Severity1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="helpdesks" Relationship="Self.FK_helpdesk_Severity" FromRole="Severity" ToRole="helpdesk" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="helpdesks" Relationship="Self.FK_helpdesk_Status" FromRole="Status" ToRole="helpdesk" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SYSUser">
+          <Key>
+            <PropertyRef Name="SYSUserID" />
+          </Key>
+          <Property Name="SYSUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PasswordEncryptedText" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RowCreatedSYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="RowModifiedSYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SYSUserProfiles" Relationship="Self.FK__SYSUserPr__SYSUs__4BAC3F29" FromRole="SYSUser" ToRole="SYSUserProfile" />
+          <NavigationProperty Name="SYSUserRoles" Relationship="Self.FK__SYSUserRo__SYSUs__52593CB8" FromRole="SYSUser" ToRole="SYSUserRole" />
+          <NavigationProperty Name="helpdesks" Relationship="mwdModel.FK_helpdesk_SYSUser" FromRole="SYSUser" ToRole="helpdesk" />
+        </EntityType>
+        <EntityType Name="SYSUserProfile">
+          <Key>
+            <PropertyRef Name="SYSUserProfileID" />
+          </Key>
+          <Property Name="SYSUserProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="RowCreatedSYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="RowModifiedSYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SYSUser" Relationship="Self.FK__SYSUserPr__SYSUs__4BAC3F29" FromRole="SYSUserProfile" ToRole="SYSUser" />
+        </EntityType>
+        <EntityType Name="SYSUserRole">
+          <Key>
+            <PropertyRef Name="SYSUserRoleID" />
+          </Key>
+          <Property Name="SYSUserRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="LOOKUPRoleID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="RowCreatedSYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="RowCreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="RowModifiedSYSUserID" Type="Int32" Nullable="false" />
+          <Property Name="RowModifiedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LOOKUPRole" Relationship="Self.FK__SYSUserRo__LOOKU__5165187F" FromRole="SYSUserRole" ToRole="LOOKUPRole" />
+          <NavigationProperty Name="SYSUser" Relationship="Self.FK__SYSUserRo__SYSUs__52593CB8" FromRole="SYSUserRole" ToRole="SYSUser" />
+        </EntityType>
+        <Association Name="FK_helpdesk_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="helpdesk" Type="Self.helpdesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="helpdesk">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_helpdesk_Severity">
+          <End Role="Severity" Type="Self.Severity" Multiplicity="0..1" />
+          <End Role="helpdesk" Type="Self.helpdesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Severity">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="helpdesk">
+              <PropertyRef Name="SeverityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_helpdesk_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="helpdesk" Type="Self.helpdesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="helpdesk">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__LOOKU__5165187F">
+          <End Role="LOOKUPRole" Type="Self.LOOKUPRole" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOOKUPRole">
+              <PropertyRef Name="LOOKUPRoleID" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="LOOKUPRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserPr__SYSUs__4BAC3F29">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSUserProfile" Type="Self.SYSUserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="SYSUserProfile">
+              <PropertyRef Name="SYSUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SYSUserRo__SYSUs__52593CB8">
+          <End Role="SYSUser" Type="Self.SYSUser" Multiplicity="1" />
+          <End Role="SYSUserRole" Type="Self.SYSUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="SYSUserRole">
+              <PropertyRef Name="SYSUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mwdEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="helpdesks" EntityType="Self.helpdesk" />
+          <EntitySet Name="LOOKUPRoles" EntityType="Self.LOOKUPRole" />
+          <EntitySet Name="Severities" EntityType="Self.Severity" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="SYSUsers" EntityType="Self.SYSUser" />
+          <EntitySet Name="SYSUserProfiles" EntityType="Self.SYSUserProfile" />
+          <EntitySet Name="SYSUserRoles" EntityType="Self.SYSUserRole" />
+          <AssociationSet Name="FK_helpdesk_Department" Association="Self.FK_helpdesk_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="helpdesk" EntitySet="helpdesks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_helpdesk_Severity" Association="Self.FK_helpdesk_Severity">
+            <End Role="Severity" EntitySet="Severities" />
+            <End Role="helpdesk" EntitySet="helpdesks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_helpdesk_Status" Association="Self.FK_helpdesk_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="helpdesk" EntitySet="helpdesks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__LOOKU__5165187F" Association="Self.FK__SYSUserRo__LOOKU__5165187F">
+            <End Role="LOOKUPRole" EntitySet="LOOKUPRoles" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserPr__SYSUs__4BAC3F29" Association="Self.FK__SYSUserPr__SYSUs__4BAC3F29">
+            <End Role="SYSUser" EntitySet="SYSUsers" />
+            <End Role="SYSUserProfile" EntitySet="SYSUserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SYSUserRo__SYSUs__52593CB8" Association="Self.FK__SYSUserRo__SYSUs__52593CB8">
+            <End Role="SYSUser" EntitySet="SYSUsers" />
+            <End Role="SYSUserRole" EntitySet="SYSUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_helpdesk_SYSUser" Association="mwdModel.FK_helpdesk_SYSUser">
+            <End Role="SYSUser" EntitySet="SYSUsers" />
+            <End Role="helpdesk" EntitySet="helpdesks" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_helpdesk_SYSUser">
+          <End Type="mwdModel.SYSUser" Role="SYSUser" Multiplicity="0..1" />
+          <End Type="mwdModel.helpdesk" Role="helpdesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUser">
+              <PropertyRef Name="SYSUserID" />
+            </Principal>
+            <Dependent Role="helpdesk">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mwdModelStoreContainer" CdmEntityContainer="mwdEntities">
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="mwdModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Department1" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="helpdesks">
+            <EntityTypeMapping TypeName="mwdModel.helpdesk">
+              <MappingFragment StoreEntitySet="helpdesk">
+                <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+                <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+                <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+                <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SeverityID" ColumnName="SeverityID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOOKUPRoles">
+            <EntityTypeMapping TypeName="mwdModel.LOOKUPRole">
+              <MappingFragment StoreEntitySet="LOOKUPRole">
+                <ScalarProperty Name="LOOKUPRoleID" ColumnName="LOOKUPRoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+                <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+                <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+                <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+                <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Severities">
+            <EntityTypeMapping TypeName="mwdModel.Severity">
+              <MappingFragment StoreEntitySet="Severity">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Severity1" ColumnName="Severity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="mwdModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Status1" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="mwdModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSUsers">
+            <EntityTypeMapping TypeName="mwdModel.SYSUser">
+              <MappingFragment StoreEntitySet="SYSUser">
+                <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="PasswordEncryptedText" ColumnName="PasswordEncryptedText" />
+                <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+                <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+                <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+                <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSUserProfiles">
+            <EntityTypeMapping TypeName="mwdModel.SYSUserProfile">
+              <MappingFragment StoreEntitySet="SYSUserProfile">
+                <ScalarProperty Name="SYSUserProfileID" ColumnName="SYSUserProfileID" />
+                <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+                <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+                <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+                <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSUserRoles">
+            <EntityTypeMapping TypeName="mwdModel.SYSUserRole">
+              <MappingFragment StoreEntitySet="SYSUserRole">
+                <ScalarProperty Name="SYSUserRoleID" ColumnName="SYSUserRoleID" />
+                <ScalarProperty Name="SYSUserID" ColumnName="SYSUserID" />
+                <ScalarProperty Name="LOOKUPRoleID" ColumnName="LOOKUPRoleID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RowCreatedSYSUserID" ColumnName="RowCreatedSYSUserID" />
+                <ScalarProperty Name="RowCreatedDateTime" ColumnName="RowCreatedDateTime" />
+                <ScalarProperty Name="RowModifiedSYSUserID" ColumnName="RowModifiedSYSUserID" />
+                <ScalarProperty Name="RowModifiedDateTime" ColumnName="RowModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
